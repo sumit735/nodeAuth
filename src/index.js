@@ -1,20 +1,37 @@
 // includes
-const express = require('express');
-require('./db/mongoose');
+const app = require('./app');
 
-const userRouter = require('./routers/user');
-
-// creating new express app
-const app = express();
-
-
-// get json sent from clients
-app.use(express.json());
-app.use(userRouter);
-
-
-// start server
+// providing port for heroku
 const port = process.env.PORT;
+
+// const multer = require('multer');
+
+// const upload = multer({
+//     dest: 'images',
+//     limits: {
+//         fileSize: 1000000
+//     },
+//     fileFilter(req, file, cb) {
+//         if (!file.originalname.match(/\.(doc | docx)$/)) {
+//             return cb(new Error('Please upload doc or docx file only'));
+//         }
+
+//         cb(undefined, true);
+//     }
+// })
+
+
+// express middlewares
+
+// server maintenance mode
+// app.use((req, res, next) => {
+// 	res.status(503).send('Server is under maintenance');
+// });
+
+
+// start the server
 app.listen(port, () => {
     console.log('Server is up on port ' + port);
 });
+
+
